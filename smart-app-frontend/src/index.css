@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: "Hind Siliguri", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Rubik", sans-serif;
+  font-family: "Source Code Pro", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(88deg, rgb(89, 0, 255), rgb(255, 187, 204));
+}
