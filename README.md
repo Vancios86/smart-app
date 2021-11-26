@@ -1,1 +1,2 @@
 # smart-app
+Frontend: ReactJS
