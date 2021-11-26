@@ -1,0 +1,45 @@
+.parallax-effect-glare-scale {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #ffbbcc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 12px;
+  -webkit-box-shadow: 0.27rem 0.27rem 1rem 0.54rem #ffbbcc;
+          box-shadow: 0.27rem 0.27rem 1rem 0.54rem #ffbbcc;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.parallax-effect-glare-scale .inner-element {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 21px;
+  font-weight: bold;
+  color: #ffbbcc;
+  -webkit-transform: translateZ(60px);
+          transform: translateZ(60px);
+}
+/*# sourceMappingURL=Logo.css.map */

@@ -1,17 +1,19 @@
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
+import logoIcon from "./logo.png";
 
 const Logo = () => {
   return (
-    <>
-      <div>Logo</div>
-      <Tilt
-        className="Tilt"
-        options={{ max: 25 }}
-        style={{ height: 250, width: 250 }}
-      >
-        <div className="Tilt-inner"> 👽 </div>
-      </Tilt>
-    </>
+    <Tilt
+      className="parallax-effect-glare-scale"
+      perspective={500}
+      glareEnable={true}
+      glareMaxOpacity={0.45}
+      scale={1.02}
+    >
+      <div className="inner-element">
+        <img src={logoIcon} alt="logo" />
+      </div>
+    </Tilt>
   );
 };
 
