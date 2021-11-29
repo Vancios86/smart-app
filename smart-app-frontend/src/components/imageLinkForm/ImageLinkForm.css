@@ -18,7 +18,6 @@
           align-items: center;
   -webkit-box-shadow: 0.12rem 0.12rem 0.99rem 0.12rem black;
           box-shadow: 0.12rem 0.12rem 0.99rem 0.12rem black;
-  background: linear-gradient(88deg, rgba(89, 0, 255, 0.88), rgba(255, 187, 204, 0.88));
   z-index: 99;
 }
 

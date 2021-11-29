@@ -1,7 +1,8 @@
 .parallax-effect-glare-scale {
   width: 150px;
   height: 150px;
-  border: 2px solid #ffbbcc;
+  border: 2px solid var(--pink);
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -16,10 +17,11 @@
       -ms-flex-align: center;
           align-items: center;
   border-radius: 12px;
-  -webkit-box-shadow: 0.27rem 0.27rem 1rem 0.54rem #ffbbcc;
-          box-shadow: 0.27rem 0.27rem 1rem 0.54rem #ffbbcc;
+  -webkit-box-shadow: 0.27rem 0.27rem 1rem 0.54rem var(--pink);
+          box-shadow: 0.27rem 0.27rem 1rem 0.54rem var(--pink);
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
+  z-index: 99;
 }
 
 .parallax-effect-glare-scale .inner-element {
@@ -38,7 +40,7 @@
           align-items: center;
   font-size: 21px;
   font-weight: bold;
-  color: #ffbbcc;
+  color: var(--pink);
   -webkit-transform: translateZ(60px);
           transform: translateZ(60px);
 }

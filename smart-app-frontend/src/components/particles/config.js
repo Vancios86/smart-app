@@ -11,7 +11,7 @@ const particlesConfig = {
       value: "#ffbbcc",
     },
     shape: {
-      type: "star",
+      type: "circle",
       stroke: {
         width: 0,
         color: "#fa0058",

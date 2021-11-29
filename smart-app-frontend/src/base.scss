@@ -6,11 +6,13 @@
 }
 
 body {
+  --purple: #5900ff;
+  --pink: #ffbbcc;
   margin: 0;
   padding: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(88deg, rgb(89, 0, 255), rgb(255, 187, 204));
+  background: linear-gradient(88deg, var(--purple), var(--pink));
 }
 
 .centered {
