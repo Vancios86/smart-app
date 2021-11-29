@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,GAAG;EACd,UAAU,EAAE,KAAK;EACjB,QAAQ,EAAE,MAAM;CAOjB;;AAXD,AAKE,MALI,CAKJ,GAAG,CAAC;EACF,OAAO,EAAE,KAAK;EACd,aAAa,EAAE,GAAG;EAClB,UAAU,EAAE,OAAO;EACnB,eAAe,EAAE,MAAM;CACxB",
+    "sources": [
+        "AIPredict.scss"
+    ],
+    "names": [],
+    "file": "AIPredict.css"
+}

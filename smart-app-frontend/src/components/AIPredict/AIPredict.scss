@@ -1,0 +1,12 @@
+.photo {
+  padding: 1rem;
+  max-width: 99%;
+  max-height: 555px;
+  overflow: hidden;
+  img {
+    display: block;
+    border-radius: 9px;
+    object-fit: contain;
+    object-position: center;
+  }
+}

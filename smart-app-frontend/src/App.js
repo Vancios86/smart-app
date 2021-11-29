@@ -11,8 +11,6 @@ function App() {
       <Navigation />
       <ImageLinkForm />
       <PredictionsCount />
-      {/*<AIPredict /> */}
-      {/* define the particles options */}
       <ParticlesBackground />
     </div>
   );
