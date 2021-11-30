@@ -4,34 +4,32 @@ import { useState } from "react";
 import Clarifai from "clarifai";
 
 const app = new Clarifai.App({
-  apiKey: "2f49c7a6a4314c3da7a1894b57db68e3",
+  apiKey: "8ddcea24d66c4b928328a75cedd3d670",
 });
 
 const ImageLinkForm = () => {
   const [userInput, setUserInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const insertUrlInput = (event) => {
-    setUserInput((userInput) => event.target.value);
+  const insertUrlInput = (e) => {
+    e.preventDefault();
+    return setUserInput(e.target.value);
   };
 
-  const buttonSubmit = (event) => {
+  const buttonSubmit = (click) => {
     setImageUrl((imageUrl) => userInput);
-    console.log(imageUrl);
+    console.log("image url", imageUrl);
+    console.log("user input", userInput);
 
-    app.models
-      .predict(
-        "53e1df302c079b3db8a0a36033ed2d15",
-        "https://samples.clarifai.com/face-det.jpg"
-      )
-      .then(
-        function (response) {
-          console.log(response);
-        },
-        function (err) {
-          console.log("error found", err);
-        }
-      );
+    app.models.predict(Clarifai.GENERAL_MODEL, `${userInput}`).then(
+      function (response) {
+        const objectName = response.outputs[0].data.concepts[0].name;
+        console.log(objectName);
+      },
+      function (err) {
+        console.log("error found", err);
+      }
+    );
   };
 
   return (
