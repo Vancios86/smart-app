@@ -2,6 +2,7 @@ import "./ImageLinkForm.css";
 import AIPredict from "../AIPredict/AIPredict";
 import { useState } from "react";
 import Clarifai from "clarifai";
+import DataDisplay from "../dataDisplay/DataDisplay";
 
 const app = new Clarifai.App({
   apiKey: "8ddcea24d66c4b928328a75cedd3d670",
@@ -9,7 +10,7 @@ const app = new Clarifai.App({
 
 const ImageLinkForm = () => {
   const [userInput, setUserInput] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [ingredients, setIngredients] = useState([]);
 
   const insertUrlInput = (e) => {
     e.preventDefault();
@@ -17,35 +18,31 @@ const ImageLinkForm = () => {
   };
 
   const buttonSubmit = (click) => {
-    setImageUrl((imageUrl) => userInput);
-    console.log("image url", imageUrl);
-    console.log("user input", userInput);
-
-    app.models.predict(Clarifai.GENERAL_MODEL, `${userInput}`).then(
-      function (response) {
-        const objectName = response.outputs[0].data.concepts[0].name;
-        console.log(objectName);
-      },
-      function (err) {
-        console.log("error found", err);
-      }
-    );
+    app.models
+      .predict(Clarifai.FOOD_MODEL, `${userInput}`)
+      .then((response) => {
+        return setIngredients(response.outputs[0].data.concepts);
+      })
+      .catch((err) => console.log("error occured:", err));
   };
 
   return (
-    <div className="centered">
-      <div className="imageLinkForm">
-        <h4>{"Paste your URL down below"}</h4>
-        <input
-          id="urlInput"
-          type="text"
-          value={userInput}
-          onChange={insertUrlInput}
-        />
-        <button onClick={buttonSubmit}>PREDICT</button>
-        <AIPredict imageUrl={imageUrl} />
+    <>
+      <div className="centered">
+        <div className="imageLinkForm">
+          <h4>{"Paste your URL down below"}</h4>
+          <input
+            id="urlInput"
+            type="text"
+            value={userInput}
+            onChange={insertUrlInput}
+          />
+          <button onClick={buttonSubmit}>PREDICT</button>
+          <AIPredict imageUrl={userInput} />
+        </div>
       </div>
-    </div>
+      <DataDisplay data={ingredients} />
+    </>
   );
 };
 

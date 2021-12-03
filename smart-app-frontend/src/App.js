@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Logo />
       <Navigation />
-      <ImageLinkForm />
       <PredictionsCount />
+      <ImageLinkForm />
       <ParticlesBackground />
     </div>
   );
