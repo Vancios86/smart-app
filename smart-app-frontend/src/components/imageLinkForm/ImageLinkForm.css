@@ -36,7 +36,7 @@
   width: 212px;
   height: 33px;
   border-radius: 9px;
-  background-color: rgba(255, 187, 204, 0.7);
+  background: transparent;
   font-weight: bold;
   -webkit-transition: -webkit-transform 0.33s ease-in-out;
   transition: -webkit-transform 0.33s ease-in-out;
@@ -45,10 +45,8 @@
 }
 
 .imageLinkForm button:hover {
-  background-color: #ffbbcc;
   -webkit-transform: scale(1.033);
           transform: scale(1.033);
-  -webkit-box-shadow: 3px 3px 9px 3px black;
-          box-shadow: 3px 3px 9px 3px black;
+  background-color: rgba(255, 187, 204, 0.3);
 }
 /*# sourceMappingURL=ImageLinkForm.css.map */

@@ -25,13 +25,13 @@
     width: 212px;
     height: 33px;
     border-radius: 9px;
-    background-color: hsla(345, 100%, 86.7%, 0.7);
+    background: transparent;
+
     font-weight: bold;
     transition: transform 0.33s ease-in-out;
   }
   button:hover {
-    background-color: hsla(345, 100%, 86.7%, 1);
     transform: scale(1.033);
-    box-shadow: 3px 3px 9px 3px black;
+    background-color: hsla(345, 100%, 86.7%, 0.3);
   }
 }

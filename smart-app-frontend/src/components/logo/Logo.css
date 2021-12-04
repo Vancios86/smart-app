@@ -1,6 +1,6 @@
 .parallax-effect-glare-scale {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border: 2px solid var(--pink);
   position: relative;
   display: -webkit-box;
@@ -17,8 +17,8 @@
       -ms-flex-align: center;
           align-items: center;
   border-radius: 12px;
-  -webkit-box-shadow: 0.27rem 0.27rem 1rem 0.54rem var(--pink);
-          box-shadow: 0.27rem 0.27rem 1rem 0.54rem var(--pink);
+  -webkit-box-shadow: 0.12rem 0.12rem 1rem 0.12rem var(--pink);
+          box-shadow: 0.12rem 0.12rem 1rem 0.12rem var(--pink);
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   z-index: 99;

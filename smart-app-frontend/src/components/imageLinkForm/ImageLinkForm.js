@@ -1,6 +1,6 @@
 import "./ImageLinkForm.css";
 import AIPredict from "../AIPredict/AIPredict";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Clarifai from "clarifai";
 import DataDisplay from "../dataDisplay/DataDisplay";
 
@@ -21,10 +21,17 @@ const ImageLinkForm = () => {
     app.models
       .predict(Clarifai.FOOD_MODEL, `${userInput}`)
       .then((response) => {
-        return setIngredients(response.outputs[0].data.concepts);
+        const receivedDataArray = response.outputs[0].data.concepts;
+        return setIngredients([...receivedDataArray]);
       })
       .catch((err) => console.log("error occured:", err));
   };
+
+  useEffect(() => {
+    if (userInput === "") {
+      setIngredients([]);
+    }
+  }, [userInput]);
 
   return (
     <>
