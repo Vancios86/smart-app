@@ -14,8 +14,6 @@ function App() {
     return setRoute(route);
   }
 
-  console.log("route is:", route);
-
   return (
     <>
       {route === "homePage" ? (
