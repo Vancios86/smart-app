@@ -28,8 +28,8 @@ body {
 }
 
 .parallax-effect-glare-scale {
-  width: 120px;
-  height: 120px;
+  width: 99px;
+  height: 99px;
   border: 2px solid var(--pink);
   position: relative;
   display: -webkit-box;
@@ -72,7 +72,6 @@ body {
   color: var(--pink);
   -webkit-transform: translateZ(60px);
           transform: translateZ(60px);
-  text-shadow: 3px 3px 3px #010c0b;
 }
 
 #navigation {

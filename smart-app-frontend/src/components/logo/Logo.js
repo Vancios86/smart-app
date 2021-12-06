@@ -1,5 +1,5 @@
 import Tilt from "react-parallax-tilt";
-import logoIcon from "./logo.png";
+import question from "./question2.png";
 
 const Logo = () => {
   return (
@@ -11,7 +11,7 @@ const Logo = () => {
       scale={1.02}
     >
       <div className="inner-element">
-        <img src={logoIcon} alt="logo" />
+        <img src={question} alt="logo" />
       </div>
     </Tilt>
   );

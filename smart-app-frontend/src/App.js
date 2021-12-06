@@ -7,23 +7,26 @@ import ParticlesBackground from "./components/particles/Particles";
 import { useState } from "react";
 
 function App() {
-  const [authorized, setAuthorized] = useState(false);
-  const isAuthorized = () => {
-    setAuthorized(true);
-  };
+  const [route, setRoute] = useState("signIn");
+
+  function onRouteChange(route) {
+    return setRoute(route);
+  }
+
+  console.log("route is:", route);
 
   return (
     <>
-      {authorized ? (
+      {route === "signIn" ? (
+        <SignIn onRouteChange={onRouteChange} />
+      ) : (
         <div className="App">
           <Logo />
-          <Navigation />
+          <Navigation onRouteChange={onRouteChange} />
           <PredictionsCount />
           <ImageLinkForm />
           <ParticlesBackground />
         </div>
-      ) : (
-        <SignIn isAuthorized={isAuthorized} />
       )}
     </>
   );
