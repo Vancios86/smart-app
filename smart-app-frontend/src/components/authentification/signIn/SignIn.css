@@ -1,4 +1,4 @@
-.signin-container {
+.container {
   width: 100%;
   height: 100vh;
   display: -webkit-box;
@@ -12,24 +12,24 @@
           align-items: center;
 }
 
-.signin-container .signin-article {
+.container .article {
   border-radius: 9px;
   width: 88%;
   max-width: 450px;
 }
 
-.signin-container .signin-article main {
+.container .article main {
   position: relative;
   z-index: 99;
 }
 
-.signin-container .signin-article input {
+.container .article input {
   border-color: var(--pink);
   border-radius: 9px;
   font-weight: bold;
 }
 
-.signin-container .signin-article input:hover {
+.container .article input:hover {
   background-color: rgba(255, 187, 204, 0.3);
 }
 /*# sourceMappingURL=SignIn.css.map */
