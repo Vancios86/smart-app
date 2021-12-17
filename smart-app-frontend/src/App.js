@@ -9,9 +9,28 @@ import { useState } from 'react';
 
 function App() {
   const [route, setRoute] = useState('signIn');
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    email: '',
+    entries: '',
+    joined: '',
+  });
 
   function onRouteChange(route) {
     return setRoute(route);
+  }
+
+  async function loadUser(userData) {
+    setUser({
+      id: userData.id,
+      name: userData.name,
+      email: userData.email,
+      entries: userData.entries,
+      joined: userData.joined,
+    });
+    console.log(user);
+    return user;
   }
 
   return (
@@ -20,14 +39,14 @@ function App() {
         <div className='App'>
           <Logo />
           <Navigation onRouteChange={onRouteChange} />
-          <PredictionsCount />
-          <ImageLinkForm />
+          <PredictionsCount name={user.name} entries={user.entries} />
+          <ImageLinkForm user={user} />
           <ParticlesBackground />
         </div>
       ) : route === 'signIn' ? (
         <SignIn onRouteChange={onRouteChange} />
       ) : (
-        <Register onRouteChange={onRouteChange} />
+        <Register loadUser={loadUser} onRouteChange={onRouteChange} />
       )}
     </>
   );

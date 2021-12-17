@@ -2,37 +2,41 @@ import './SignIn.css';
 import { useState } from 'react';
 
 const SignIn = ({ onRouteChange }) => {
-  const [signInEmail, setSignInEmail] = useState({ email: '' });
-  const [signInPassword, setSignInPassword] = useState({ password: '' });
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
 
   const onEmailChange = (event) => {
-    setSignInEmail({ email: event.target.value });
+    setSignInEmail(event.target.value);
   };
 
   const onPasswordChange = (event) => {
-    setSignInPassword({ password: event.target.value });
+    setSignInPassword(event.target.value);
   };
 
-  const onSignInSubmit = (event) => {
-    console.log(signInEmail, signInPassword);
-    fetch('http://localhost:3001/signin/', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: signInEmail,
-        password: signInPassword,
-      }),
-    })
-      .then((response) => response.json)
-      .then((data) => {
-        if (data === 'success') {
-          return onRouteChange('homePage');
-        } else {
-          return console.log('error logging in');
-        }
+  const onSignInSubmit = (click) => {
+    onRouteChange('homePage');
+    checkUser();
+    async function checkUser() {
+      const apiCall = await fetch('http://localhost:3001/signin/', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: signInEmail,
+          password: signInPassword,
+        }),
       });
+      const response = await apiCall.json();
+
+      if (response === 'success') {
+        onRouteChange('homePage');
+        console.log('success');
+      } else {
+        onRouteChange('register');
+        console.log('no such user exists');
+      }
+    }
   };
 
   return (
@@ -72,7 +76,7 @@ const SignIn = ({ onRouteChange }) => {
                 className='ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
                 type='submit'
                 value='Sign in'
-                onClick={() => onSignInSubmit()}
+                onClick={onSignInSubmit}
               />
             </div>
             <div className='lh-copy mt3 center'>
