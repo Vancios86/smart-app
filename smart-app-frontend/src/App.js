@@ -29,7 +29,7 @@ function App() {
       entries: userData.entries,
       joined: userData.joined,
     });
-    console.log(user);
+
     return user;
   }
 
@@ -40,11 +40,11 @@ function App() {
           <Logo />
           <Navigation onRouteChange={onRouteChange} />
           <PredictionsCount name={user.name} entries={user.entries} />
-          <ImageLinkForm user={user} />
+          <ImageLinkForm user={user} loadUser={loadUser} />
           <ParticlesBackground />
         </div>
       ) : route === 'signIn' ? (
-        <SignIn onRouteChange={onRouteChange} />
+        <SignIn loadUser={loadUser} onRouteChange={onRouteChange} />
       ) : (
         <Register loadUser={loadUser} onRouteChange={onRouteChange} />
       )}

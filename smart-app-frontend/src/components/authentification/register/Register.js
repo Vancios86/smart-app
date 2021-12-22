@@ -37,6 +37,7 @@ const Register = ({ onRouteChange, loadUser }) => {
       const newUser = await apiCall.json();
       if (newUser) {
         loadUser(newUser);
+        console.log(newUser);
         console.log('registered');
         onRouteChange('homePage');
       }

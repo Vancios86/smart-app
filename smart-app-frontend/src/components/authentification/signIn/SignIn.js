@@ -1,7 +1,7 @@
 import './SignIn.css';
 import { useState } from 'react';
 
-const SignIn = ({ onRouteChange }) => {
+const SignIn = ({ onRouteChange, loadUser }) => {
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
@@ -27,11 +27,11 @@ const SignIn = ({ onRouteChange }) => {
           password: signInPassword,
         }),
       });
-      const response = await apiCall.json();
+      const userData = await apiCall.json();
 
-      if (response === 'success') {
+      if (userData.id) {
         onRouteChange('homePage');
-        console.log('success');
+        loadUser(userData);
       } else {
         onRouteChange('register');
         console.log('no such user exists');

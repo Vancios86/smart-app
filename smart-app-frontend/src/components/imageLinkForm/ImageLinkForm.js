@@ -8,7 +8,7 @@ const app = new Clarifai.App({
   apiKey: '8ddcea24d66c4b928328a75cedd3d670',
 });
 
-const ImageLinkForm = () => {
+const ImageLinkForm = ({ user, loadUser }) => {
   const [userInput, setUserInput] = useState('');
   const [ingredients, setIngredients] = useState([]);
 
@@ -21,6 +21,22 @@ const ImageLinkForm = () => {
     app.models
       .predict(Clarifai.FOOD_MODEL, `${userInput}`)
       .then((response) => {
+        if (response) {
+          fetch('http://localhost:3001/image', {
+            method: 'put',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: user.id,
+            }),
+          })
+            .then((response) => response.json())
+            .then((count) => {
+              Object.assign(user, (user.entries = count));
+              loadUser(user);
+            });
+        }
         const receivedDataArray = response.outputs[0].data.concepts;
         return setIngredients([...receivedDataArray]);
       })
