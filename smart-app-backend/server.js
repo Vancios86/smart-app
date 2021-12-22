@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+// import bcrypt from 'bcrypt-nodejs';
+import cors from 'cors';
 
 /* 
 --> response from the server
@@ -12,6 +14,7 @@ import bodyParser from 'body-parser';
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const dummyData = {
   users: [
@@ -32,7 +35,26 @@ const dummyData = {
       joined: new Date(),
     },
   ],
+  login: [
+    {
+      id: '1',
+      has: '',
+      email: 'ion@mail.com',
+    },
+  ],
 };
+
+// bcrypt.hash("bacon", null, null, function(err, hash) {
+//   // Store hash in your password DB.
+// });
+
+// // Load hash from your password DB.
+// bcrypt.compare("bacon", hash, function(err, res) {
+//   // res == true
+// });
+// bcrypt.compare("veggies", hash, function(err, res) {
+//   // res = false
+// });
 
 app.get('/', (req, res) => {
   res.send(dummyData.users);
@@ -43,7 +65,7 @@ app.post('/signin', (req, res) => {
     req.body.email === dummyData.users[0].email &&
     req.body.password === dummyData.users[0].password
   ) {
-    res.status(200).json('succesfully loged in');
+    res.status(200).json(dummyData.users[0]);
   } else {
     res.status(400).json('error logging in');
   }
@@ -51,6 +73,7 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
+
   dummyData.users.push({
     id: '3',
     name: name,
@@ -91,6 +114,6 @@ app.put('/image', (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('listening on 3000');
+app.listen(3001, () => {
+  console.log('listening on 3001');
 });
