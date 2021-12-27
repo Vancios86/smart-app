@@ -14,69 +14,35 @@ const db = knex({
   },
 });
 
-db.select('*')
-  .from('users')
-  .then((data) => {
-    console.log(data);
-  });
-
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const dummyData = {
-  users: [
-    {
-      id: '1',
-      name: 'Ion',
-      email: 'ion@mail.com',
-      password: 'pass',
-      entries: 0,
-      joined: new Date(),
-    },
-    {
-      id: '2',
-      name: 'Ioana',
-      email: 'ioana@mail.com',
-      password: 'pass2',
-      entries: 0,
-      joined: new Date(),
-    },
-  ],
-  login: [
-    {
-      id: '1',
-      has: '',
-      email: 'ion@mail.com',
-    },
-  ],
-};
-
 app.get('/', (req, res) => {
-  res.send(dummyData.users);
+  res.send('success');
 });
 
 app.post('/signin', (req, res) => {
   db.select('email', 'hash')
     .from('login')
     .where('email', '=', req.body.email)
-    .then((data) => {
+    .then(async (data) => {
       const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
       if (isValid) {
-        return db
+        return await db
           .select('*')
           .from('users')
           .where('email', '=', req.body.email)
           .then((user) => {
             res.json(user[0]);
           })
-          .catch((err) => res.status(400).json('unable to get user'));
+          .catch((err) => res.status(400).json('unable to get user data'));
       } else {
         res.status(400).json('wrong credentials');
       }
     })
-    .catch((err) => res.status(400).json('wrong credentials'));
+    .catch((err) => res.status(400).json('unable to sign in'));
 });
 
 app.post('/register', (req, res) => {
@@ -90,7 +56,7 @@ app.post('/register', (req, res) => {
       })
       .into('login')
       .returning('email')
-      .then((loginEmail) => {
+      .then(async (loginEmail) => {
         return trx('users')
           .returning('*')
           .insert({

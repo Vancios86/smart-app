@@ -13,8 +13,8 @@ const SignIn = ({ onRouteChange, loadUser }) => {
     setSignInPassword(event.target.value);
   };
 
-  const onSignInSubmit = (click) => {
-    onRouteChange('homePage');
+  const onSignInSubmit = async (click) => {
+    await onRouteChange('homePage');
     checkUser();
     async function checkUser() {
       const apiCall = await fetch('http://localhost:3001/signin/', {
@@ -30,7 +30,6 @@ const SignIn = ({ onRouteChange, loadUser }) => {
       const userData = await apiCall.json();
 
       if (userData.id) {
-        onRouteChange('homePage');
         loadUser(userData);
       } else {
         onRouteChange('register');
