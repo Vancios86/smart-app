@@ -13,28 +13,36 @@ const SignIn = ({ onRouteChange, loadUser }) => {
     setSignInPassword(event.target.value);
   };
 
-  const onSignInSubmit = async (click) => {
-    await onRouteChange('homePage');
-    checkUser();
-    async function checkUser() {
-      const apiCall = await fetch('http://localhost:3001/signin/', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: signInEmail,
-          password: signInPassword,
-        }),
-      });
-      const userData = await apiCall.json();
+  const onSignInSubmit = (click) => {
+    if (signInEmail !== '' && signInPassword !== '') {
+      try {
+        onRouteChange('homePage');
+        checkUser();
+        async function checkUser() {
+          const apiCall = await fetch('http://localhost:3001/signin/', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: signInEmail,
+              password: signInPassword,
+            }),
+          });
+          const userData = await apiCall.json();
 
-      if (userData.id) {
-        loadUser(userData);
-      } else {
-        onRouteChange('register');
-        console.log('no such user exists');
+          if (userData.id) {
+            await loadUser(userData);
+          } else {
+            alert('no such user exists');
+            return onRouteChange('register');
+          }
+        }
+      } catch (error) {
+        console.log('errooooor:', error);
       }
+    } else {
+      alert('introduce email and password');
     }
   };
 

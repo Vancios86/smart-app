@@ -10,4 +10,8 @@
 .predictionsCount p {
   max-width: 888px;
 }
-/*# sourceMappingURL=Predictions.css.map */
+
+.predictionsCount h4 > span {
+  color: #e60000;
+}
+/*# sourceMappingURL=PredictionsCount.css.map */

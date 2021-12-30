@@ -1,11 +1,14 @@
-import "./Navigation.css";
+import './Navigation.css';
 
-const Navigation = ({ onRouteChange }) => {
+const Navigation = ({ onRouteChange, unloadUser }) => {
   return (
-    <nav id="navigation">
+    <nav id='navigation'>
       <p
-        onClick={() => onRouteChange("signIn")}
-        className="f3 link dim black underline pa3 pointer"
+        onClick={() => {
+          onRouteChange('signIn');
+          unloadUser();
+        }}
+        className='f3 link dim black underline pa3 pointer'
       >
         Sign Out
       </p>

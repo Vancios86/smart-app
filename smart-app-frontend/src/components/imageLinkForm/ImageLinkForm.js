@@ -40,7 +40,7 @@ const ImageLinkForm = ({ user, loadUser }) => {
         const receivedDataArray = response.outputs[0].data.concepts;
         return setIngredients([...receivedDataArray]);
       })
-      .catch((err) => console.log('error occured:', err));
+      .catch((err) => console.log('introduce a valid jpg or png url'));
   };
 
   useEffect(() => {

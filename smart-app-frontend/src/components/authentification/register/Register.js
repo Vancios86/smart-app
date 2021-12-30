@@ -1,7 +1,7 @@
 import '../signIn/SignIn.css';
 import { useState } from 'react';
 
-const Register = ({ onRouteChange, loadUser }) => {
+const Register = ({ onRouteChange, loadUser, unloadUser }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,28 +18,63 @@ const Register = ({ onRouteChange, loadUser }) => {
     setPassword(event.target.value);
   };
 
-  const onRegisterSubmit = async (click) => {
-    await onRouteChange('homePage');
-
-    addUser();
-    async function addUser() {
-      const apiCall = await fetch('http://localhost:3001/register/', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-        }),
-      });
-      const newUser = await apiCall.json();
-      if (newUser) {
-        loadUser(newUser);
-        console.log('registered');
-        onRouteChange('homePage');
+  const onRegisterSubmit = (click) => {
+    function ValidateEmail(email) {
+      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return true;
       }
+      alert('You have entered an invalid email address format!');
+    }
+
+    function ValidateName(name) {
+      if (name.length > 1) {
+        if (/^(?:[A-Za-z]+ ?[A-Za-z]+)*$/gm.test(name)) {
+          return true;
+        }
+      }
+      alert('introduce a valid name');
+    }
+
+    function ValidatePassword(password) {
+      if (password.length > 2) {
+        return true;
+      }
+      alert('minimum 3 characters for the password');
+    }
+
+    if (
+      ValidateEmail(email) &&
+      ValidateName(name) &&
+      ValidatePassword(password)
+    ) {
+      try {
+        onRouteChange('homePage');
+        addUser();
+        async function addUser() {
+          const apiCall = await fetch('http://localhost:3001/register/', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              password: password,
+            }),
+          });
+          const newUser = await apiCall.json();
+          if (newUser) {
+            loadUser(newUser);
+            console.log('registered');
+          }
+        }
+      } catch (err) {
+        alert('error registering new user');
+        unloadUser();
+      }
+    } else {
+      console.log("let's try one more time");
+      unloadUser();
     }
   };
 

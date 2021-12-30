@@ -33,12 +33,22 @@ function App() {
     return user;
   }
 
+  async function unloadUser() {
+    setUser({
+      id: '',
+      name: '',
+      email: '',
+      entries: '',
+      joined: '',
+    });
+  }
+
   return (
     <>
       {route === 'homePage' ? (
         <div className='App'>
           <Logo />
-          <Navigation onRouteChange={onRouteChange} />
+          <Navigation onRouteChange={onRouteChange} unloadUser={unloadUser} />
           <PredictionsCount name={user.name} entries={user.entries} />
           <ImageLinkForm user={user} loadUser={loadUser} />
           <ParticlesBackground />
@@ -46,7 +56,11 @@ function App() {
       ) : route === 'signIn' ? (
         <SignIn loadUser={loadUser} onRouteChange={onRouteChange} />
       ) : (
-        <Register loadUser={loadUser} onRouteChange={onRouteChange} />
+        <Register
+          loadUser={loadUser}
+          onRouteChange={onRouteChange}
+          unloadUser={unloadUser}
+        />
       )}
     </>
   );
