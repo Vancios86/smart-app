@@ -4,6 +4,7 @@ import SignIn from './components/authentification/signIn/SignIn';
 import Register from './components/authentification/register/Register';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
 import PredictionsCount from './components/predictionsCount/PredictionsCount';
+import Footer from './components/footer/Footer';
 import ParticlesBackground from './components/particles/Particles';
 import { useState } from 'react';
 
@@ -51,6 +52,7 @@ function App() {
           <Navigation onRouteChange={onRouteChange} unloadUser={unloadUser} />
           <PredictionsCount name={user.name} entries={user.entries} />
           <ImageLinkForm user={user} loadUser={loadUser} />
+          <Footer />
           <ParticlesBackground />
         </div>
       ) : route === 'signIn' ? (

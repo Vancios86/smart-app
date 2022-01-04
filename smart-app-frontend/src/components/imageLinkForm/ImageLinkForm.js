@@ -35,7 +35,8 @@ const ImageLinkForm = ({ user, loadUser }) => {
             .then((count) => {
               Object.assign(user, (user.entries = count));
               loadUser(user);
-            });
+            })
+            .catch(console.log);
         }
         const receivedDataArray = response.outputs[0].data.concepts;
         return setIngredients([...receivedDataArray]);

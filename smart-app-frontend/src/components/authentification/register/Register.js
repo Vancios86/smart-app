@@ -63,6 +63,11 @@ const Register = ({ onRouteChange, loadUser, unloadUser }) => {
             }),
           });
           const newUser = await apiCall.json();
+          if (apiCall.status !== 200) {
+            unloadUser();
+            return onRouteChange('register');
+          }
+
           if (newUser) {
             loadUser(newUser);
             console.log('registered');
