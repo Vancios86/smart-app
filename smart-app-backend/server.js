@@ -26,7 +26,7 @@ app.use(cors());
 
 //endpoints
 app.get('/', (req, res) => {
-  res.send('success');
+  res.send('server is running');
 });
 
 app.post('/signin', (req, res) => {
