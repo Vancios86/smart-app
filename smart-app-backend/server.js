@@ -45,7 +45,7 @@ app.put('/image', (req, res) => {
   handleEntriesCount(req, res, db);
 });
 
-const port = process.env.PORT;
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
+const PORT = process.env.PORT;
+app.listen(PORT || 3000, () => {
+  console.log(`server listening on ${PORT}`);
 });
